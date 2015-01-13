@@ -1,4 +1,4 @@
-ENV["APIFY_SECRET"] = 'secret'
+ENV["APIFY_SECRET"] ||= 'secret'
 
 require File.expand_path('../boot', __FILE__)
 
