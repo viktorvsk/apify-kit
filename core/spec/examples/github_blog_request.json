@@ -1,0 +1,24 @@
+{
+  "index": {
+    "url": ["https://github.com/blog"],
+    "js": false,
+    "paginate": [
+      "\\/?+$",
+      "/?page=<% 1,2,1 %>"
+    ]
+  },
+  "posts": {
+    "from": "select('h2.blog-post-title a') from('index')",
+    "js": false,
+    "host": "http://github.com",
+    "pattern": {
+      "title": "<% .blog-title %>",
+      "meta": {
+        "calendar": "<% .blog-post-meta li:first %>",
+        "author": "<% .blog-post-meta .vcard %>",
+        "category": "<% .blog-post-meta li:last %>"
+      },
+      "body": "<% .blog-post-body %>"
+    }
+  }
+}

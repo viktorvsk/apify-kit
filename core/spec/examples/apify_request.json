@@ -1,0 +1,62 @@
+{
+  "index": {
+    "url": ["http://victorvsk.github.io/apify/"],
+    "js": true
+  },
+  "demo_index": {
+    "from": "from('index') select('.container a')",
+    "js": false,
+    "host": "http://victorvsk.github.io",
+    "pattern": {
+      "hellow_text": "<% .container .jumbotron | first | html %>"
+    }
+  },
+  "categories": {
+    "url": [
+      "http://victorvsk.github.io/apify/products/page/2",
+      "http://victorvsk.github.io/apify/products/page/1"
+    ],
+    "js": false,
+    "host": "http://victorvsk.github.io",
+    "pattern": {
+      "title": "<% title %>-<% .pagination .active a %>",
+      "customers": {
+        "__iterator__": "#customers ol",
+        "name": "<% a %>",
+        "email": "<% a | first | attr_href %>",
+        "sex": "<% .gender | first | text %>",
+        "purschase_name": "<% .product-name %>",
+        "purschase_count": "<% .badge %>"
+      },
+      "not_in_stock_products": {
+        "__iterator__": "#products .col-xs-6:last ol",
+        "price": "<% .price %>",
+        "image": "<% img | first | attr_src %>",
+        "product_name": "<% ./text()[3] | first | text %>"
+      },
+      "products": {
+        "__iterator__": "//div[@class=\"col-xs-6\" and ./h2/text() = \"In stock\"]/ul/li",
+        "price": "<% .price %>",
+        "image": "<% img | first | attr_src %>",
+        "product_name": "<% a | first | text %>",
+        "link": "<% a | first | attr_href %>"
+      }
+    }
+  },
+  "products": {
+    "from": "from('categories') select('//div[@class=\"col-xs-6\" and ./h2/text() = \"In stock\"]/ul/li/a')",
+    "js": false,
+    "host": "http://victorvsk.github.io",
+    "pattern": {
+      "name": "<% h1.product-name %>",
+      "images": "<% #images img | mapattr_src %>",
+      "properties": {
+        "__iterator__": "#product_properties tr",
+        "prop_name": "<% td:first %>",
+        "prop_val": "<%  td:last %>"
+      },
+      "short_descr": "<% #short_description %>",
+      "descr": "<% #description | first | html %>"
+    }
+  }
+}

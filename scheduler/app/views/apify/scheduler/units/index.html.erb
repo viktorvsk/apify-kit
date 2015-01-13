@@ -1,0 +1,37 @@
+  <div class='ui sixteen wide column'>
+
+    <% unless Resque.workers.present? %>
+      <div class="ui negative floating message">
+        <i class="close icon"></i>
+        <div class="header">Caution!</div>
+        <p>
+          Resque is disabled.
+        </p>
+      </div>
+    <% end %>
+
+  <% if @units.present? %>
+
+    <h1 class='ui header'>Units</h1>
+    <table class='ui celled stripped teal table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>History</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%= render @units %>
+      </tbody>
+    </table>
+  <% else %>
+    <h1 class='ui header'>No units present</h1>
+    <p>Create your first.</p>
+
+  <% end %>
+
+  <div class='  right aligned column'>
+    <%= link_to 'New Unit', new_unit_path, class: 'ui primary button ' %>
+  </div>
+</div>

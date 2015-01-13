@@ -1,0 +1,32 @@
+<div class="ui grid page">
+  <div class="ui column four wide"></div>
+  <div class="ui column seven wide">
+    <% if flash[:error] %>
+      <div class="ui negative floating message">
+        <i class="close icon"></i>
+        <div class="header">Error</div>
+        <p>
+          <%= flash[:error] %>
+        </p>
+      </div>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="ui positive floating message">
+        <i class="close icon"></i>
+        <div class="header">Note</div>
+        <p>
+          <%= flash[:notice] %>
+        </p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="ui warning floating message">
+        <i class="close icon"></i>
+        <div class="header">Warning</div>
+        <p>
+          <%= flash[:alert] %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<% if history %>
+
+  <% unless history.queued? %>
+    Waiting to put on queue...
+  <% end %>
+
+  <% if history.finished_at.nil? and history.queued? and !history.currently_working? %>
+
+    <div class='ui column center aligned red'>
+      <h2 class=''>Error</h2>
+    </div>
+
+  <% end %>
+
+  <% if history.finished_at or history.currently_working? %>
+
+    <b>Started</b>:
+    <%= history.created_at.strftime("%e %h, %X") %>
+    <% if history.finished_at %>
+      <br/>
+      <b>Finished</b>:
+      <%= history.finished_at.strftime("%e %h, %X")  %>
+      <br/>
+      <b>Time</b>: <%= (history.finished_at - history.created_at).round %> seconds
+    <% end %>
+    <% if history.response_body.present? and json = JSON.try(:parse, history.response_body) %>
+      <br/>
+      <b>Message</b>:
+      <i class='ui column <%= "red" if json["success"] == 0 %>'><%= json['message'].html_safe %></i>
+    <% elsif history.response_body.present? %>
+      <br/>
+      <b>Message</b>:
+      <i><%= history.response_body %></i>
+    <% end %>
+
+  <% end %>
+
+
+<% end %>

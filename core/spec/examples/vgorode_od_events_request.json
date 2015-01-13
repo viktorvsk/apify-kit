@@ -1,0 +1,23 @@
+{
+  "index": {
+    "url": [
+      "http://kh.vgorode.ua/ajax/module.aspx?spm_id=2912&city_id=36&d=020115&IsAjax=true&t=635558089790624457&ri=0"
+    ],
+    "js": false,
+    "host": "http://kh.vgorode.ua"
+  },
+  "events": {
+    "from": "select('.art_cell .title a') from('index')",
+    "js": false,
+    "host": "http://kh.vgorode.ua",
+    "pattern": {
+      "title": "<% h1 %>",
+      "images": "<% .article img | mapattr_src %>",
+      "description": "<% .article .body | first | html %>",
+      "date": "<% //div[@class='col-sm-10' and ../div[@class='col-sm-2']/text() = 'Когда:'] %>",
+      "address": "<% //div[@class='col-sm-10' and ../div[@class='col-sm-2']/text() = 'Где:'] %>",
+      "price": "<% //div[@class='col-sm-10' and ../div[@class='col-sm-2']/text() = 'Цена:'] %>",
+      "city": "Харьков"
+    }
+  }
+}

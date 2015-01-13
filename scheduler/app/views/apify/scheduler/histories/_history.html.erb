@@ -1,0 +1,6 @@
+<div class='ui segment'>
+  <div class='ui column right aligned'>
+    <%= link_to raw('<i class="remove circle icon red"></i>'), history_path(history), method: :delete, 'data-confirm' => "Are you sure?" %>
+  </div>
+  <%= render 'apify/scheduler/shared/short_history', history: history %>
+</div>

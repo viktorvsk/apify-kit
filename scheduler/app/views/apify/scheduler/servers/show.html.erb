@@ -1,0 +1,33 @@
+<div class='ui grid'>
+  <div class='ui column'>
+    <div class='ui segment'>
+
+      <h1 class='ui header'><%= @server.name %></h1>
+
+       <p class='ui segment stacked'>
+        <%= @server.description %>
+      </p>
+
+      <p class='ui segment'>
+        <%= @server.url %>
+      </p>
+
+      <h4>API key</h4>
+      <p class='ui segment'>
+        <%= @server.api_key %>
+      </p>
+
+      <h4>Units</h4>
+      <p class='ui segment'>
+        <%= @server.units.map(&:name).join(",") %>
+      </p>
+
+      <div class='ui column right aligned'>
+        <%= link_to 'Edit', edit_server_path(@server), class: 'ui primary button' %>
+        <%= link_to 'Test', test_server_path(@server), class: 'ui teal button', method: :post %>
+        <%= link_to 'Back', servers_path, class: 'ui warning button' %>
+      </div>
+
+    </div>
+  </div>
+</div>

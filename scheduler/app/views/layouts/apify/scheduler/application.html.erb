@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scheduler</title>
+  <%= stylesheet_link_tag    "scheduler/application", media: "all" %>
+  <%= stylesheet_link_tag    "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.5.2/semantic.min.css", media: "all" %>
+
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class='ui inverted menu'>
+    <div class='item'><%= link_to 'Apify Scheduler', root_path %></div>
+    <div class='item'><%= link_to 'Units', units_path %></div>
+    <div class='item'><%= link_to 'Servers', servers_path %></div>
+    <% if defined?(current_user) and current_user.present? %>
+      <div class='item'><%= link_to 'Logout', main_app.destroy_user_session_path, method: :delete %></div>
+    <% elsif defined?(current_user) %>
+      <div class='item'><%= link_to 'Login', main_app.new_user_session_path, method: :post %></div>
+    <% end %>
+  </div>
+
+  <%= render 'layouts/apify/scheduler/flash' %>
+
+  <div class='ui page grid'>
+    <div class='main container'>
+      <div class='ui grid full'>
+        <div class='sixteen column row'>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= javascript_include_tag "scheduler/application" %>
+</body>
+</html>

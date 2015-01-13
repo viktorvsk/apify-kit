@@ -1,0 +1,34 @@
+<div class='ui grid'>
+  <div class='ui column'>
+    <div class='ui segment'>
+
+      <h1 class='ui header'>
+        <%= @unit.name %>
+
+      </h1>
+
+      <p class='ui segment stacked'>
+        <%= @unit.description %>
+        <br/>
+        <small>(
+          <%=
+          "In #{@unit.processes} processes with #{@unit.delay} milliseconds delay <i>to <b>#{@unit.destination}</b></i>".html_safe %>
+        )</small>
+      </p>
+
+      <pre class='ui segment'><%= @unit.pattern.strip %></pre>
+
+      <p class='ui segment'>
+        <%= @unit.server.name %>
+        <small><i>(<%= @unit.server.url %>)</i></small>
+      </p>
+
+      <div class='right aligned column'>
+        <%= link_to 'Edit', edit_unit_path(@unit), class: 'ui primary button' %>
+        <%= link_to 'Histories', unit_histories_path(@unit), class: 'ui primary button' %>
+        <%= link_to 'Perform', perform_unit_path(@unit), class: 'ui teal button' %>
+        <%= link_to 'Back', units_path, class: 'ui warning button' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+{
+  "index": {
+    "url": [
+      "http://oblomoff.com.ua/events/page/2/",
+      "http://oblomoff.com.ua/events/"
+    ],
+    "js": false,
+    "host": "http://oblomoff.com.ua/"
+  },
+  "events": {
+    "from": "select('h2.caption a') from('index')",
+    "js": false,
+    "host": "http://oblomoff.com.ua",
+    "pattern": {
+      "title": "<% h2.caption %>",
+      "date": "<% h3.info %>",
+      "images": "<% .story-slider img | mapattr_src %>",
+      "description": "<% .text.story | first | html %>"
+    }
+  }
+}

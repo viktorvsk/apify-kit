@@ -1,0 +1,48 @@
+<div class='ui grid'>
+  <div class='column'>
+    <div class='ui segment form'>
+
+      <%= form_for(@server) do |f| %>
+        <% if @server.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@server.errors.count, "error") %> prohibited this server from being saved:</h2>
+
+            <ul>
+            <% @server.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <div class='ui input'>
+            <%= f.label :name %><br>
+            <%= f.text_field :name %>
+          </div>
+        </div>
+        <div class="field">
+          <div class='ui input'>
+            <%= f.label :url %><br>
+            <%= f.text_field :url %>
+          </div>
+        </div>
+        <div class="field">
+          <div class='ui input'>
+            <%= f.label :api_key %><br>
+            <%= f.text_field :api_key %>
+          </div>
+        </div>
+        <div class="field">
+          <div class='ui input'>
+            <%= f.label :description %><br>
+            <%= f.text_area :description %>
+          </div>
+        </div>
+        <div class="right aligned column">
+          <%= f.submit (@server.persisted? ? 'Update Server' : 'Create Server'), class: 'ui blue submit button' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

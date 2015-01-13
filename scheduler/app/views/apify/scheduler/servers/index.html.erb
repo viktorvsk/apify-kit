@@ -1,0 +1,46 @@
+<div class='ui sixteen wide column'>
+  <% if @servers.present? %>
+
+    <h1 class='ui header'>Servers</h1>
+    <table class='ui celled stripped teal table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Info</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @servers.each do |server| %>
+          <tr>
+            <td>
+              <div class='ui column right aligned'>
+                <%= link_to raw('<i class="remove circle icon red"></i>'), server, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to raw('<i class="configure icon"></i>'), edit_server_path(server) %>
+                <%= link_to raw('<i class="video play icon green"></i>'), test_server_path(server), method: :post %>
+              </div>
+              <%= link_to server.name, server %>
+            </td>
+            <td>
+
+              <b><%= server.url %></b>
+              <br/>
+              <small>
+                <%= server.units.map.map(&:name).join("; ") %>
+              </small>
+            </td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h1 class='ui header'>No servers present</h1>
+    <p>Create your first.</p>
+
+  <% end %>
+
+  <div class='  right aligned column'>
+    <%= link_to 'New Server', new_server_path, class: 'ui primary button ' %>
+  </div>
+</div>

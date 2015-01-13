@@ -1,0 +1,27 @@
+<tr>
+  <td>
+    <div class='ui column right aligned'>
+      <%= link_to raw('<i class="remove circle icon red"></i>'), unit, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to raw('<i class="configure icon"></i>'), edit_unit_path(unit) %>
+      <%= link_to raw('<i class="tasks icon"></i>'), unit_histories_path(unit) %>
+      <%= link_to raw('<i class="video play icon green"></i>'), perform_unit_path(unit), method: :post if Resque.workers.present? %>
+    </div>
+
+    <% if unit.currently_working? %>
+      <div class='ui inline active loader'></div>
+    <% end %>
+
+    <%= link_to unit.name, unit %>
+    <br/>
+    <b><sup>(Processes: <%= unit.processes %>, Delay: <%= unit.delay %>)</sup></b>
+    <br/>
+    <small>
+      <i><%= unit.description %></i><br/>
+      <b><%= unit.server.name %></b>:
+      <b><%= unit.server.url %></b><br/>
+    </small>
+  </td>
+  <td>
+    <%= render 'apify/scheduler/shared/short_history', history: unit.histories.order('created_at DESC').first %>
+  </td>
+</tr>
