@@ -26,7 +26,7 @@
       <div class='right aligned column'>
         <%= link_to 'Edit', edit_unit_path(@unit), class: 'ui primary button' %>
         <%= link_to 'Histories', unit_histories_path(@unit), class: 'ui primary button' %>
-        <%= link_to 'Perform', perform_unit_path(@unit), class: 'ui teal button' %>
+        <%= link_to 'Perform', perform_unit_path(@unit), class: 'ui teal button', method: :post %>
         <%= link_to 'Back', units_path, class: 'ui warning button' %>
       </div>
     </div>

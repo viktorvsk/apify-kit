@@ -1,4 +1,4 @@
-worker_processes 2
+worker_processes 5
 timeout 3000
 
 

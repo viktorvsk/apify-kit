@@ -15,7 +15,7 @@ module Apify
       end
 
       def self.fetch(expression, docs)
-        docs.map{ |html| ::Nokogiri::HTML(html).search(expression) }.flatten
+        docs.map{ |html| ::Nokogiri::HTML(html).search(expression) rescue nil }.flatten
       end
 
       private

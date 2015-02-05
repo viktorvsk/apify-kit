@@ -147,7 +147,7 @@ module Apify
                       'Connection'      => 'keep-alive',
                       'User-Agent'      => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/39.0.2171.65 Chrome/39.0.2171.65 Safari/537.36')
               d = Nokogiri::HTML(html)
-              charset = d.search('meta[@http-equiv="content-type"]').last['content'].match(/charset=(.+)/)[1].downcase rescue nil
+              charset = d.search('//meta[contains(translate(@http-equiv,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"content-type")]').last['content'].match(/charset=(.+)/)[1].downcase rescue nil
               if charset.present? and charset != 'utf-8'
                 html = html.force_encoding(charset).encode("utf-8", undef: :replace)
               end
