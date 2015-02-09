@@ -1,5 +1,5 @@
-worker_processes 5
-timeout 3000
+worker_processes 2
+timeout 10000
 
 
 listen "/tmp/unicorn.apify.sock"

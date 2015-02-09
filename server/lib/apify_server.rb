@@ -1,6 +1,7 @@
 require 'sinatra'
 require "apify_server/version"
 require 'apify_core'
+require 'resolv-replace'
 
 module Apify
   module Server

@@ -7,6 +7,7 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'daemons'
 
 # Apify Kit
 # Core Dependencies
@@ -23,6 +24,7 @@ gem 'sinatra', require: false
 gem 'apify_core', path: 'core'
 gem 'apify_server', path: 'server'
 gem 'apify_scheduler', path: 'scheduler'
+gem 'wpk', path: '../wpk'
 
 gem 'unicorn', '~> 4.8.3'
 gem 'resque', '1.25.2'
