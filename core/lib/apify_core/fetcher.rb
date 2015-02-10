@@ -58,7 +58,8 @@ module Apify
           src = self.send(source)
           method = src[:js] ? :js : :normal
           processes_number = (method == :js ? 1 : @processes )
-          src[:pages] = ::Parallel.map(src[:pages], in_processes: processes_number) do |url_or_array|
+          #src[:pages] = ::Parallel.map(src[:pages], in_processes: processes_number) do |url_or_array|
+          src[:pages] = src[:pages].map do |url_or_array|
             if url_or_array.respond_to?(:each)
               res = []
               url_or_array.each do |url|
